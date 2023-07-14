@@ -1,0 +1,96 @@
+#include"GameClearScene.h"
+#include"DxLib.h"
+#include"ScenManager.h"
+
+
+/************************************
+
+*マクロ定義
+
+**************************************/
+
+
+/*************************************
+
+*型定義
+
+***************************************/
+
+
+/************************************
+
+*変数定義
+
+*************************************/
+
+int GameClearImage;
+int GameClearSE;
+int GameClearFlag;
+
+
+/*************************************
+
+*プロトタイプ宣言
+
+*************************************/
+
+
+/****************************************
+
+*ゲームクリア画面：初期化処理
+
+*引数：なし
+
+*戻り値：エラー情報
+
+****************************************/
+
+
+int GameClearScene_Initialize(void)
+{
+	int ret = 0;
+
+	//画面の読み込み
+	GameClearImage = LoadGraph("images/gameclear.png");
+
+	//音源の読み込み
+	GameClearSE = LoadSoundMem("sounds/gamwclear_se.mp3");
+
+	GameClearFlag = 0;
+
+	//エラーチェック
+	if (GameClearImage == -1)
+	{
+		ret = -1;
+	}
+	if (GameClearSE == -1)
+	{
+		ret = -1;
+	}
+	return ret;
+    
+}
+
+/*****************************************
+
+*ゲームクリア画面：更新処理
+
+*引数：なし
+
+*戻り値：なし
+
+*****************************************/
+
+void GameClearScene_Update(void)
+{
+	//ゲームクリア効果音再生チェック
+	if (CheckSoundMem(GameClearSE) == 0)
+	{
+		if (GameClearFlag == TRUE)
+		{
+			Change_Scene(E_GAMEMAIN);
+		}
+		else
+
+	}
+}
