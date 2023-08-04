@@ -82,10 +82,26 @@ void GameOverScene_Update(void)
 		else
 		{
 			PlaySoundMem(GameOverSE, DX_PLAYTYPE_BACK);
+
+			GameOverFlag = TRUE;
 			
 		}
 	}
 }
 
+/********************************
+* 
+* ゲームオーバー画面：描画処理
+* 
+* 引数：なし
+* 
+* 戻り値：なし
+* *****************************/
 
+
+void GameOverScene_Draw(void)
+{
+	//ゲームオーバー画像表示
+	DrawGraph(0, 0, GameOverImage, FALSE);
+}
 
