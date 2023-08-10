@@ -143,6 +143,7 @@
     <ClInclude Include="GameClearScene.h" />
     <ClInclude Include="GameMainScene.h" />
     <ClInclude Include="GameOverScene.h" />
+    <ClInclude Include="InputControl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
