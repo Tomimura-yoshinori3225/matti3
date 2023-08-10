@@ -73,4 +73,35 @@ int SceneManager_Initialize(GAME_MODE mode)
 		return D_ERROR;
 	}
 
+	//ゲームオーバー画面
+	Read_Error = GameOverScene_Initialize();
+	if (Read_Error == D_ERROR)
+	{
+		return D_ERROR;
+	}
+
+	Game_Mode = mode;
+	Next_Mode = Game_Mode;
+
+	return Read__Error;
 }
+
+/****************************
+
+*シーン管理機能：更新処理
+
+*引数：なし
+
+*戻り値：なし
+
+********************************/
+
+void SceneManagr_Update(void)
+{
+	//前フレームとゲームモードが違っていたらシーンを切り替える
+	if (Game_Mode != Next_Mode)
+	{
+		SceneManager_Initialize(Next__Mode);
+	}
+	
+	
