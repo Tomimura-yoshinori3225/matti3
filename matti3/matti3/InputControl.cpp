@@ -171,3 +171,24 @@ int GetkeyFlg(int key)
 *戻り値：マウスカーソルのｘ座標情報
 
 **************************************/
+
+int  GetMousePositionx(void)
+{
+	return mouse_position_x;
+}
+
+
+/**************************************
+
+*入力制御機能マウス座標取得処理
+
+*引数：なし
+
+*戻り値：マウスカーソルのｙ座標情報
+
+****************************************/
+
+int GetMousePositiony(void)
+{
+	return mouse_position_y;
+}
