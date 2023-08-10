@@ -63,3 +63,111 @@ void Input_Update(void)
 	//マウス入力情報の取得
 	GetMousePoint(&mouse_position_x, &mouse_position_y);
 }
+
+
+
+/*******************************
+
+*入力制限機能：ESCキー入力チェック
+
+*引数：なし
+
+*戻り値：TRUE（入力された）、FALSE（未入力）
+
+*************************************/
+
+
+int Input_Escape(void)
+{
+	int ret = FALSE;
+
+	//ESCキーが押されたらループから抜ける
+	if (CheckHitkey(KEY_INPUT_ESCAPE))
+
+	{
+		ret = TRUE;
+	}
+	return ret;
+}
+
+
+
+
+/*****************************
+
+*入力制限機能：入力情報取得処理（離した瞬間）
+
+*引数：指定するマウスのボタン
+
+*戻り値：TRUE（入力された）、FALSE（未入力）
+********************************/
+
+
+int GetOldkey(int key)
+{
+	int ret = FALSE;
+
+	if ((key & old_button) != FALSE)
+	{
+		ret = TRUE;
+	}
+	return ret;
+
+}
+
+
+/******************************
+
+*入力制限処理：入力情報取得処理（押している）
+
+*引数：指定するマウスのボタン
+
+*戻り値：TRUE（入力された）、FALSE（未入力）
+
+*********************************/
+
+
+int GetNoWkey(int key)
+{
+	int ret = FALSE;
+
+	if ((key & now_botton) != FALSE)
+	{
+		ret = TRUE;
+	}
+	return ret;
+}
+
+
+/*****************************
+
+*入力制御機能：入力情報取得処理（押した瞬間）
+
+*引数：指定するマウスのボタン
+
+*戻り値：TRUE（入力された）、FALSE（未入力）
+******************************/
+
+
+int GetkeyFlg(int key)
+{
+	int ret = FALSE;
+	int keyflg = now_botton & ~old_botton;
+
+	if ((key & Keyflg) != FALSE)
+	{
+		ret = TRUE;
+	}
+	return ret;
+}
+
+
+/*******************************
+
+*入力制御機能マウス座標取得処理
+
+*引数：なし
+
+*戻り値：マウスカーソルのｘ座標情報
+
+**************************************/
