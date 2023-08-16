@@ -103,5 +103,38 @@ void SceneManagr_Update(void)
 	{
 		SceneManager_Initialize(Next__Mode);
 	}
-	
-	
+
+	//各画面の更新処理
+	switch (Game_Mode)
+	{
+	case_E_TITLE:
+		TitleScene_Update();
+		break;
+	case E_GAMEMAIN:
+		GameMainScene_Update();
+		break;
+	case E_GAME_CLEAR:
+		GameClearScene_Update();
+		break;
+	case E_GAME_OVER:
+		GameOverScene_Update();
+		break;
+	befault:
+		break;
+	}
+}
+
+/********************************
+
+*シーン管理機能：シーン切り替え処理
+
+*引数：変更するゲームモード
+
+*戻り値：なし
+**********************************/
+
+void Change_Scene(GAME_MODE mode)
+{
+	Next_Mode = made;
+}
+
