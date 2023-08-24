@@ -422,7 +422,7 @@ void FadeOutBlock(void)
 
 	BlendMode -= 5;
 
-	if (BleendMode == 0)
+	if (BlendMode == 0)
 	{
 		BlendMode = 255;
 		Stage_State = 2;
@@ -514,6 +514,7 @@ void CheckBlock(void)
 		//連鎖が３つ以上ならブロックを消しブロック移動処理へ移行する
 		Stage_State = 1;
 	}
+}
 
 
 	/***************************
