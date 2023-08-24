@@ -137,7 +137,7 @@
     <ClCompile Include="GameMainScene.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="InputControl.cpp" />
-    <ClCompile Include="ScenManager.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="TitlScene.cpp" />
   </ItemGroup>

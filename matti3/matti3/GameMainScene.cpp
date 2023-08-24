@@ -1,7 +1,7 @@
-#include"GameMainScene,h"
-#include"DxLib,h"
-#include"Stage,h"
-#include"SceneManager,h"
+#include"GameMainScene.h"
+#include"DxLib.h"
+#include"Stage.h"
+#include"SceneManager.h"
 
 /****************************
 
@@ -105,12 +105,12 @@ int GameMainScene_Initialize(void)
 
 *****************************************/
 
-void GameMainScene_Updeta(void)
+void GameMainScene_Update(void)
 {
 	switch (Get_StageState())
 	{
 	case 0:
-		Selec Block();    //ブロックを選択する。
+		SelectBlock();    //ブロックを選択する。
 		break;
 
 	case 2:
@@ -161,7 +161,7 @@ void GameMainScene_Draw(void)
 {
 	int PosX = 600;
 	int tmp_level = GameLevel;
-	int tmp_scpre = Get_StageScore();
+	int tmp_score = Get_StageScore();
 
 	//ステージを描画
 	StageDraw();

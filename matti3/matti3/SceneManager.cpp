@@ -1,5 +1,5 @@
-#include "ScenManager.h"
-#include "TitleScen.h"
+#include "SceneManager.h"
+#include "TitleScene.h"
 #include "GameMainScene.h"
 #include "GameClearScene.h"
 #include "GameOverScene.h"
@@ -25,8 +25,8 @@
 
 **************************/
 
-GAME_MODE Dame_Mode;          //ゲームモード情報（現在）
-GAME_MODE Next_MODE;          //ゲームモード情報（次）
+GAME_MODE Game_Mode;          //ゲームモード情報（現在）
+GAME_MODE Next_Mode;          //ゲームモード情報（次）
 
 
 /***********************
@@ -83,7 +83,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 	Game_Mode = mode;
 	Next_Mode = Game_Mode;
 
-	return Read__Error;
+	return Read_Error;
 }
 
 /****************************
@@ -96,12 +96,12 @@ int SceneManager_Initialize(GAME_MODE mode)
 
 ********************************/
 
-void SceneManagr_Update(void)
+void SceneManager_Update(void)
 {
 	//前フレームとゲームモードが違っていたらシーンを切り替える
 	if (Game_Mode != Next_Mode)
 	{
-		SceneManager_Initialize(Next__Mode);
+		SceneManager_Initialize(Next_Mode);
 	}
 
 	//各画面の更新処理
@@ -119,7 +119,43 @@ void SceneManagr_Update(void)
 	case E_GAME_OVER:
 		GameOverScene_Update();
 		break;
-	befault:
+	default:
+		break;
+	}
+}
+
+/************************************
+
+*シーン管理機能：描画処理
+
+*引数：なし
+
+*戻り値：なし
+
+*************************************/
+
+void SceneManager_Draw(void)
+{
+	//各画面の描画処理
+	switch (Game_Mode)
+	{
+	case E_TITLE:
+		TitleScene_Draw();
+		break;
+
+	case E_GAMEMAIN:
+		GameMainScene_Draw();
+		break;
+
+	case E_GAME_CLEAR:
+		GameClearScene_Draw();
+		break;
+
+	case E_GAME_OVER:
+		GameOverScene_Draw();
+		break;
+
+	default:
 		break;
 	}
 }
@@ -135,6 +171,6 @@ void SceneManagr_Update(void)
 
 void Change_Scene(GAME_MODE mode)
 {
-	Next_Mode = made;
+	Next_Mode = mode;
 }
 

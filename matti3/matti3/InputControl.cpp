@@ -37,7 +37,7 @@ int mouse_position_y;
 void Input_Initialize(void)
 {
 	old_button = NULL;
-	now_button = NULL;
+	now_botton = NULL;
 	mouse_position_x = NULL;
 	mouse_position_y = NULL;
 
@@ -82,7 +82,7 @@ int Input_Escape(void)
 	int ret = FALSE;
 
 	//ESCキーが押されたらループから抜ける
-	if (CheckHitkey(KEY_INPUT_ESCAPE))
+	if (CheckHitKey(KEY_INPUT_ESCAPE))
 
 	{
 		ret = TRUE;
@@ -127,7 +127,7 @@ int GetOldkey(int key)
 *********************************/
 
 
-int GetNoWkey(int key)
+int GetNowkey(int key)
 {
 	int ret = FALSE;
 
@@ -149,12 +149,12 @@ int GetNoWkey(int key)
 ******************************/
 
 
-int GetkeyFlg(int key)
+int GetKeyFlg(int key)
 {
 	int ret = FALSE;
-	int keyflg = now_botton & ~old_botton;
+	int keyflg = now_botton & ~old_button;
 
-	if ((key & Keyflg) != FALSE)
+	if ((key & keyflg) != FALSE)
 	{
 		ret = TRUE;
 	}
@@ -172,7 +172,7 @@ int GetkeyFlg(int key)
 
 **************************************/
 
-int  GetMousePositionx(void)
+int  GetMousePositionX(void)
 {
 	return mouse_position_x;
 }
@@ -188,7 +188,7 @@ int  GetMousePositionx(void)
 
 ****************************************/
 
-int GetMousePositiony(void)
+int GetMousePositionY(void)
 {
 	return mouse_position_y;
 }

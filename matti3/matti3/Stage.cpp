@@ -14,7 +14,7 @@
 #define BLOCK_IMAGE_MAX        (10)    //ブロック画像数
 
 
-#define SELECT_MAX             (8)     //アイテム最大数
+#define ITEM_MAX             (8)     //アイテム最大数
 
 #define SELECT_CURSOR          (0)
 #define NEXT_CURSOR            (1)
@@ -26,13 +26,13 @@
 
 *******************************/
 
-typedef atruct
+typedef struct
 {
 	int flg;
-int x, y,;
-int width, height;
-int image;
-int backup;
+	int x, y;
+	int width, height;
+	int image;
+	int backup;
 
 }T_Object;
 
@@ -736,7 +736,7 @@ void CheckBlock(void)
 
 	/*****************************
 	
-	*ステージ制御機能：ブロックの情報処理
+	*ステージ制御機能：ブロックの情報保存処理
 	
 	*引数：なし
 	
@@ -777,7 +777,7 @@ void CheckBlock(void)
 		{
 			for (j = 0; j < WIDTH; j++)
 			{
-				Block[i][j].image = Block[i][j].backup
+				Block[i][j].image = Block[i][j].backup;
 			}
 		}
 	}

@@ -33,7 +33,7 @@
     <ClCompile Include="InputControl.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ScenManager.cpp">
+    <ClCompile Include="SceneManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">

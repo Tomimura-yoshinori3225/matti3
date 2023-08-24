@@ -18,7 +18,7 @@
 #define SCREEN_HEIGHT   (480)     //スクリーンサイズ（高さ）
 #define  SCREEN_WIDTH   (640)     //スクリーンサイズ（幅）
 #define  SCREEN_COLORBIT   (32)     //スクリーンカラービット
-#define  FONT＿SIZE   (20)     //文字サイズ
+#define  FONT_SIZE   (20)     //文字サイズ
 
 
 /********************************
@@ -47,15 +47,15 @@
 *プログラムの開始
 *******************************/
 
-int WINAPI WinMain(_In_HINSTANCE hinsutance, _IN_opt_HINSTANCE hPrevINsance,
-	_IN_LPSTR lpCmdLine, _IN_intnShowCmd)
+int WINAPI WinMain(_In_ HINSTANCE hinsutance, _In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPSTR lpCmdLine, _In_ int nShowCmd)
 {
 	//ウィンドウスタイル設定
-	setMainWindowTest("Match 3 Puzzle");
+	SetMainWindowText("Match 3 Puzzle");
 	//ウィンドウモードで起動
 	ChangeWindowMode(TRUE);
 	//画面サイズの最大サイズ、カラービット数を設定
-	setGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_COLORBIT);
+	SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_COLORBIT);
 
 	//DXライブラリ初期化処理
 
@@ -78,10 +78,10 @@ int WINAPI WinMain(_In_HINSTANCE hinsutance, _IN_opt_HINSTANCE hPrevINsance,
 	}
 
 	//描画先画面を裏にする
-	setDrawScreen(DX_SCREEN_BACK);
+	SetDrawScreen(DX_SCREEN_BACK);
 
 	//文字サイズを設定
-	setFontSize(FONT_SIZE);
+	SetFontSize(FONT_SIZE);
 
 	//ゲームループ
 	while (ProcessMessage() != D_ERROR && Input_Escape() == FALSE)
@@ -100,7 +100,7 @@ int WINAPI WinMain(_In_HINSTANCE hinsutance, _IN_opt_HINSTANCE hPrevINsance,
 		SceneManager_Draw();
 
 		//フレームレート制御処理
-		FreaControl_Update();
+		FreamControl_Update();
 
 		//画面の内容を表画面に反映
 		ScreenFlip();
