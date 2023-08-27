@@ -302,7 +302,7 @@ void SelectBlock(void)
 
 //カーソル座標の取得
 Select[SELECT_CURSOR].x = GetMousePositionX() / BLOCKSIZE;
-Select[SELECT_CURSOR].y = GEtMousePositionY() / BLOCKSIZE;
+Select[SELECT_CURSOR].y = GetMousePositionY() / BLOCKSIZE;
 
 //選択ブロックの範囲を制限
 if (Select[SELECT_CURSOR].x < 0)
@@ -356,6 +356,13 @@ if (ClickStatus == E_SECOND)
 		Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
 	Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image = TmpBlock;
 
+	//連鎖が３つ以上か調べる
+	Result = 0;
+	Result += combo_check(Select[NEXT_CURSOR].y + 1,
+		Select[NEXT_CURSOR].x + 1);
+	Result += combo_check(Select[TMP_CURSOR].y + 1.
+		Select[TMP_CURSOR].x + 1);
+
 	//連鎖が３未満なら選択ブロックを元に戻す
 	if (Result == 0)
 	{
@@ -364,9 +371,9 @@ if (ClickStatus == E_SECOND)
 			[Select[NEXT_CURSOR].x + 1].image;
 
 		Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image =
-			Block[Select[Tmp_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
+			Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
 
-		Block[Select[TMP_CURSOR].y + 1][Select[Select[Tmp_CURSOR].x + 1].image = TmpBlock;
+		Block[Select[TMP_CURSOR].y + 1][Select[Select[TMP_CURSOR].x + 1].image = TmpBlock;
 	}
 	else
 	{
@@ -411,7 +418,7 @@ void FadeOutBlock(void)
 		{
 			if (Block[i][j].image == 0)
 			{
-				DrawGraph(Block[i][j].x, Block[i][j].y
+				DrawGraph(Block[i][j].x, Block[i][j].y,
 					BlockImage[Block[i][j].backup], TRUE);
 			}
 		}
@@ -644,7 +651,7 @@ void CheckBlock(void)
 
 
 		//3つ以上で並んでいるか？
-		if ((CountaH >= 3 || CountW >= 3))
+		if ((CountH >= 3 || CountW >= 3))
 		{
 			if (CountH >= 3)
 			{
@@ -724,7 +731,7 @@ void CheckBlock(void)
 		(*cnt)++;
 
 
-		if (Block{ y } [x + 1] .image == Color)
+		if (Block[ y ]  [x + 1] .image == Color)
 		{
 			combo_check_w(y, x + 1, cnt, col);
 		}
