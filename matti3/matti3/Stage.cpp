@@ -360,7 +360,7 @@ if (ClickStatus == E_SECOND)
 	Result = 0;
 	Result += combo_check(Select[NEXT_CURSOR].y + 1,
 		Select[NEXT_CURSOR].x + 1);
-	Result += combo_check(Select[TMP_CURSOR].y + 1.
+	Result += combo_check(Select[TMP_CURSOR].y + 1,
 		Select[TMP_CURSOR].x + 1);
 
 	//連鎖が３未満なら選択ブロックを元に戻す
@@ -381,10 +381,10 @@ if (ClickStatus == E_SECOND)
 		//連鎖が３つ以上ならブロックを消しブロック移動処理へ移行する
 		Stage_State = 1;
 	}
-	
+
 	//次にクリックできるようにClockFlgを０にする
 	ClickStatus = E_NONE;
-	}
+    
 
 }
 
