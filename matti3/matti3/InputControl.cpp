@@ -10,7 +10,7 @@
 *********************/
 
 int old_button;
-int now_botton;
+int now_button;
 int mouse_position_x;
 int mouse_position_y;
 
@@ -37,7 +37,7 @@ int mouse_position_y;
 void Input_Initialize(void)
 {
 	old_button = NULL;
-	now_botton = NULL;
+	now_button = NULL;
 	mouse_position_x = NULL;
 	mouse_position_y = NULL;
 
@@ -56,8 +56,8 @@ void Input_Initialize(void)
 void Input_Update(void)
 {
 	//マウス入力情報の取得
-	old_button = now_botton;
-	now_botton = GetMouseInput();
+	old_button = now_button;
+	now_button = GetMouseInput();
 
 
 	//マウス入力情報の取得
@@ -103,7 +103,7 @@ int Input_Escape(void)
 ********************************/
 
 
-int GetOldkey(int key)
+int GetOldKey(int key)
 {
 	int ret = FALSE;
 
@@ -127,11 +127,11 @@ int GetOldkey(int key)
 *********************************/
 
 
-int GetNowkey(int key)
+int GetNowKey(int key)
 {
 	int ret = FALSE;
 
-	if ((key & now_botton) != FALSE)
+	if ((key & now_button) != FALSE)
 	{
 		ret = TRUE;
 	}
@@ -152,7 +152,7 @@ int GetNowkey(int key)
 int GetKeyFlg(int key)
 {
 	int ret = FALSE;
-	int keyflg = now_botton & ~old_button;
+	int keyflg = now_button & ~old_button;
 
 	if ((key & keyflg) != FALSE)
 	{

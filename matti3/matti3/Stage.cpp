@@ -18,7 +18,7 @@
 
 #define SELECT_CURSOR          (0)
 #define NEXT_CURSOR            (1)
-#define TMP_CUROR              (2)
+#define TMP_CURSOR              (2)
 
 /********************************
 
@@ -108,7 +108,7 @@ int StageInitialize(void)
 	//音源読み込み
 	ClickSE = LoadSoundMem("sounds/click_se.mp3");
 	FadeOutSE = LoadSoundMem("sounds/fadeout_se.mp3");
-	MoveBlockSE = LoadSoundMem("sounds/moveblok_se.mp3");
+	MoveBlockSE = LoadSoundMem("sounds/moveblock_se.mp3");
 
 	//ブロック生成処理
 	CreateBlock();
@@ -298,94 +298,94 @@ void SelectBlock(void)
 {
 	int TmpBlock;
 	int Result;
-}
 
-//カーソル座標の取得
-Select[SELECT_CURSOR].x = GetMousePositionX() / BLOCKSIZE;
-Select[SELECT_CURSOR].y = GetMousePositionY() / BLOCKSIZE;
 
-//選択ブロックの範囲を制限
-if (Select[SELECT_CURSOR].x < 0)
-{
-	Select[SELECT_CURSOR].x = 0;
-}
-if (Select[SELECT_CURSOR].x > WIDTH - 3)
-{
-	Select[SELECT_CURSOR].x = WIDTH - 3;
-}
-if (Select[SELECT_CURSOR].y < 0)
-{
-	Select[SELECT_CURSOR].y = 0;
-}
-if (Select[SELECT_CURSOR].y > HEIGHT - 3)
-{
-	Select[SELECT_CURSOR].y = HEIGHT - 3;
-}
+	//カーソル座標の取得
+	Select[SELECT_CURSOR].x = GetMousePositionX() / BLOCKSIZE;
+	Select[SELECT_CURSOR].y = GetMousePositionY() / BLOCKSIZE;
 
-//クリックでブロックを選択
-if (GetKeyFlg(MOUSE_INPUT_LEFT)) {
-	//クリック効果音
-	PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK);
-
-	if (ClickStatus == E_NONE) {
-		Select[NEXT_CURSOR].x = Select[SELECT_CURSOR].x;
-		Select[NEXT_CURSOR].y = Select[SELECT_CURSOR].y;
-		ClickStatus = E_ONCE;
+	//選択ブロックの範囲を制限
+	if (Select[SELECT_CURSOR].x < 0)
+	{
+		Select[SELECT_CURSOR].x = 0;
 	}
-	else if (ClikStatus == E_ONCE &&
-		((abs(Select[NEXT_CURSOR].x - Select[SELECT_CURSOR].x)
-			== 1 &&
-			(abs(Select[NEXT_CURSOR].y - Select[SELECT_CURSOR].y)
-				== 0)) ||
-			abs(Select[NEXT_CURSOR].y - Selest[SELECT_CURSOR].y) ==
+	if (Select[SELECT_CURSOR].x > WIDTH - 3)
+	{
+		Select[SELECT_CURSOR].x = WIDTH - 3;
+	}
+	if (Select[SELECT_CURSOR].y < 0)
+	{
+		Select[SELECT_CURSOR].y = 0;
+	}
+	if (Select[SELECT_CURSOR].y > HEIGHT - 3)
+	{
+		Select[SELECT_CURSOR].y = HEIGHT - 3;
+	}
+
+	//クリックでブロックを選択
+	if (GetKeyFlg(MOUSE_INPUT_LEFT)) {
+		//クリック効果音
+		PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK);
+
+		if (ClickStatus == E_NONE) {
+			Select[NEXT_CURSOR].x = Select[SELECT_CURSOR].x;
+			Select[NEXT_CURSOR].y = Select[SELECT_CURSOR].y;
+			ClickStatus = E_ONCE;
+		}
+		else if (ClickStatus == E_ONCE &&
+			((abs(Select[NEXT_CURSOR].x - Select[SELECT_CURSOR].x)
+				== 1 &&
+				(abs(Select[NEXT_CURSOR].y - Select[SELECT_CURSOR].y)
+					== 0)) ||
+				(abs(Select[NEXT_CURSOR].y - Select[SELECT_CURSOR].y) ==
 				1)))
-	{
+				{
 
-		Select[TMP_CURSOR].x = Select[SELECT_CURSOR].x;
-		Select[TMP_CURSOR].y = Select[SELECT_CURSOR].y;
-		ClickStatus = E_SECOND;
+					Select[TMP_CURSOR].x = Select[SELECT_CURSOR].x;
+					Select[TMP_CURSOR].y = Select[SELECT_CURSOR].y;
+					ClickStatus = E_SECOND;
 	}
-}
+	}
 
-//選択ブロックを交換する
-if (ClickStatus == E_SECOND)
-{
-	TmpBlock = Block[Select[NEXT_CUSOR].y + 1][Select[NEXT_CURSOR].x + 1].image;
-
-	Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image =
-		Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
-	Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image = TmpBlock;
-
-	//連鎖が３つ以上か調べる
-	Result = 0;
-	Result += combo_check(Select[NEXT_CURSOR].y + 1,
-		Select[NEXT_CURSOR].x + 1);
-	Result += combo_check(Select[TMP_CURSOR].y + 1,
-		Select[TMP_CURSOR].x + 1);
-
-	//連鎖が３未満なら選択ブロックを元に戻す
-	if (Result == 0)
+	//選択ブロックを交換する
+	if (ClickStatus == E_SECOND)
 	{
-
-		int TmpBlock = Block[Select[NEXT_CURSOR].y + 1]
-			[Select[NEXT_CURSOR].x + 1].image;
+		TmpBlock = Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image;
 
 		Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image =
 			Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
+		Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image = TmpBlock;
 
-		Block[Select[TMP_CURSOR].y + 1][Select[Select[TMP_CURSOR].x + 1].image = TmpBlock;
+		//連鎖が３つ以上か調べる
+		Result = 0;
+		Result += combo_check(Select[NEXT_CURSOR].y + 1,
+			Select[NEXT_CURSOR].x + 1);
+		Result += combo_check(Select[TMP_CURSOR].y + 1,
+			Select[TMP_CURSOR].x + 1);
+
+		//連鎖が３未満なら選択ブロックを元に戻す
+		if (Result == 0)
+		{
+
+			int TmpBlock = Block[Select[NEXT_CURSOR].y + 1]
+				[Select[NEXT_CURSOR].x + 1].image;
+
+			Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image =
+				Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
+
+			Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image = TmpBlock;
+		}
+		else
+		{
+
+			//連鎖が３つ以上ならブロックを消しブロック移動処理へ移行する
+			Stage_State = 1;
+		}
+
+		//次にクリックできるようにClockFlgを０にする
+		ClickStatus = E_NONE;
+
 	}
-	else
-	{
-
-		//連鎖が３つ以上ならブロックを消しブロック移動処理へ移行する
-		Stage_State = 1;
-	}
-
-	//次にクリックできるようにClockFlgを０にする
-	ClickStatus = E_NONE;
-    
-
 }
 
 /****************************
@@ -414,7 +414,7 @@ void FadeOutBlock(void)
 
 	for (i = 1; i < HEIGHT - 1; i++)
 	{
-		for (i = 1; j < WIDTH - 1; j++)
+		for (j = 1; j < WIDTH - 1; j++)
 		{
 			if (Block[i][j].image == 0)
 			{
@@ -606,7 +606,7 @@ void CheckBlock(void)
 	*戻り値：ミッションがクリアしているか
 	***************************/
 
-	void Set_StageMisson(int mission)
+	void Set_StageMission(int mission)
 	{
 		Stage_Mission += mission;
 	}
@@ -710,7 +710,7 @@ void CheckBlock(void)
 	
 	***********************************/
 
-	void conbo_check_w(int y, int x, int* cnt, int* col)
+	void combo_check_w(int y, int x, int* cnt, int* col)
 	{
 
 

@@ -40,7 +40,7 @@ int GameOverScene_Initialize(void)
 	GameOverImage = LoadGraph("images/gameover.png");
 
 	//âπåπì«Ç›çûÇ›
-	GameOverSE = LoadSoundMem("sound/gameover_se.mp3");
+	GameOverSE = LoadSoundMem("sounds/gameover_se.mp3");
 
 	GameOverFlag = FALSE;
 

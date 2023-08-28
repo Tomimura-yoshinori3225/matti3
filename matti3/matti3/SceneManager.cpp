@@ -147,6 +147,7 @@ void SceneManager_Draw(void)
 		GameMainScene_Draw();
 		break;
 
+
 	case E_GAME_CLEAR:
 		GameClearScene_Draw();
 		break;
