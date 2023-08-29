@@ -362,6 +362,7 @@ void SelectBlock(void)
 		Result = 0;
 		Result += combo_check(Select[NEXT_CURSOR].y + 1,
 			Select[NEXT_CURSOR].x + 1);
+
 		Result += combo_check(Select[TMP_CURSOR].y + 1,
 			Select[TMP_CURSOR].x + 1);
 
@@ -462,7 +463,7 @@ void MoveBlock(void)
 		{
 			if (Block[i][j].image == 0)
 			{
-				for (k = 1; k > 0; k--)
+				for (k = i; k > 0; k--)
 				{
 					Block[k][j].image = Block[k - 1][j].image;
 					Block[k - 1][j].image = 0;
@@ -695,6 +696,10 @@ void CheckBlock(void)
 		(*cnt)++;
 
 		if (Block[y + 1][x].image == Color)
+		{
+			combo_check_h(y + 1, x, cnt, col);
+		}
+		if (Block[y - 1][x].image == Color)
 		{
 			combo_check_h(y - 1, x, cnt, col);
 		}

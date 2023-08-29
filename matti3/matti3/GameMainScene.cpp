@@ -185,9 +185,9 @@ void GameMainScene_Draw(void)
 	PosX = 620;
 
 	do {
-		DrawRotaGraph(PosX, 160, 0.3f, 0, NumberImage[tmp_level % 10], TRUE);
-		tmp_level /= 10;
-		PosX -= 30;
+		DrawRotaGraph(PosX, 160, 0.3f, 0, NumberImage[tmp_score % 10], TRUE);
+		tmp_score /= 10;
+		PosX -= 20;
 	} while (tmp_score > 0);
 
 	//§ŒÀŽžŠÔ‚Ì•`‰æ
