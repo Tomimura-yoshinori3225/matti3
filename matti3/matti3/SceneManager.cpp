@@ -60,7 +60,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 	}
 
 	//ゲームメイン画面
-	Read_Error = GameClearScene_Initialize();
+	Read_Error = GameMainScene_Initialize();
 	if (Read_Error == D_ERROR)
 	{
 		return D_ERROR;
@@ -107,7 +107,7 @@ void SceneManager_Update(void)
 	//各画面の更新処理
 	switch (Game_Mode)
 	{
-	case_E_TITLE:
+	case E_TITLE:
 		TitleScene_Update();
 		break;
 	case E_GAMEMAIN:

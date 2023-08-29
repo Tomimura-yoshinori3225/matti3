@@ -83,6 +83,7 @@ void TitleScene_Update(void)
 	{
 		PlaySoundMem(TitleBGM, DX_PLAYTYPE_BACK);
 	}
+
 	if (GetKeyFlg(MOUSE_INPUT_LEFT) == TRUE)
 	{
 		if (GetMousePositionX() > 120 && GetMousePositionX() < 290 &&
