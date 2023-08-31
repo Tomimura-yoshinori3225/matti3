@@ -56,8 +56,7 @@ int GameMainScene_Initialize(void)
 {
 	int ret = 0;
 	int i;
-
-
+	int a;   //Game回数
 	//画像読み込み
 	LoadDivGraph("images/number.png", NUMBER_IMAGE_MAX, NUMBER_IMAGE_MAX, 1, 60, 120, NumberImage);
 
@@ -79,6 +78,7 @@ int GameMainScene_Initialize(void)
 
 	if (GameCount == 0)
 	{
+		
 		GameScore = 0;     //スコアの初期化
 		GameLevel = 1;     //ゲームレベルの初期化
 		Set_StageMission(3);  //ミッションの初期化
@@ -89,7 +89,7 @@ int GameMainScene_Initialize(void)
 	else
 	{
 		GameCount++;
-		if (GameCount%2 ==1)
+		if (GameCount % 2 == 1)
 		{
 			GameLevel++;//ゲームレベルの更新
 			Set_StageMission(3);  //ミッションを増やす
